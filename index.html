@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BK Hima Bindhu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0F1115;
+    --surface: #171A21;
+    --surface-2: #1D212A;
+    --line: #262B35;
+    --text: #E8E9ED;
+    --muted: #8B92A3;
+    --accent: #5EEAD4;
+    --accent-dim: rgba(94,234,212,0.12);
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+
+  .mono{
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.02em;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* NAV */
+  nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(15,17,21,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:920px;
+    margin:0 auto;
+    padding:18px 24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .nav-name{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:15px;
+  }
+  .nav-links{
+    display:flex;
+    gap:32px;
+  }
+  .nav-links a{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    color:var(--muted);
+    transition:color 0.25s ease;
+    position:relative;
+  }
+  .nav-links a:hover{ color:var(--text); }
+  .nav-links a::after{
+    content:'';
+    position:absolute;
+    left:0; bottom:-4px;
+    width:0; height:1px;
+    background:var(--accent);
+    transition:width 0.25s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+
+  /* HERO */
+  .hero{
+    padding:110px 0 90px;
+  }
+  .hero-eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    color:var(--accent);
+    margin-bottom:24px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .hero-eyebrow .dot{
+    width:6px; height:6px;
+    border-radius:50%;
+    background:var(--accent);
+    display:inline-block;
+  }
+  .hero h1{
+    font-size:44px;
+    line-height:1.2;
+    max-width:680px;
+    margin-bottom:24px;
+  }
+  .hero h1 .hl{ color:var(--accent); }
+  .hero p{
+    font-size:17px;
+    color:var(--muted);
+    max-width:560px;
+    margin-bottom:40px;
+  }
+
+  /* signature: signal line */
+  .signal{
+    width:100%;
+    max-width:680px;
+    height:40px;
+    margin:8px 0 40px;
+  }
+  .signal svg{ width:100%; height:100%; display:block; }
+  .signal path{
+    fill:none;
+    stroke:var(--accent);
+    stroke-width:1.4;
+    stroke-linecap:round;
+    opacity:0.55;
+    stroke-dasharray:4 500;
+    animation:draw 3.2s ease-in-out forwards;
+  }
+  @keyframes draw{
+    to{ stroke-dasharray:504 0; }
+  }
+
+  .hero-links{ display:flex; gap:20px; }
+  .btn{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    padding:11px 20px;
+    border-radius:6px;
+    border:1px solid var(--line);
+    transition:all 0.25s ease;
+  }
+  .btn-primary{
+    background:var(--accent);
+    color:#0F1115;
+    border-color:var(--accent);
+  }
+  .btn-primary:hover{ opacity:0.85; transform:translateY(-1px); }
+  .btn-ghost:hover{ border-color:var(--accent); color:var(--accent); transform:translateY(-1px); }
+
+  /* SECTION HEADERS */
+  section{ padding:80px 0; border-top:1px solid var(--line); }
+  .sec-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:44px;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .sec-head h2{ font-size:26px; }
+  .sec-head .sec-note{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    color:var(--muted);
+  }
+
+  /* ABOUT */
+  .about-text{
+    font-size:16px;
+    color:var(--muted);
+    max-width:680px;
+  }
+  .about-text p + p{ margin-top:16px; }
+  .about-text .em{ color:var(--text); }
+
+  /* SKILLS */
+  .tag-cloud{ display:flex; flex-wrap:wrap; gap:10px; }
+  .tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    color:var(--muted);
+    padding:7px 14px;
+    border:1px solid var(--line);
+    border-radius:20px;
+    transition:all 0.25s ease;
+  }
+  .tag:hover{
+    color:var(--accent);
+    border-color:var(--accent);
+    background:var(--accent-dim);
+  }
+
+  /* PROJECTS */
+  .project{
+    padding:32px 0;
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:32px;
+  }
+  .project:first-of-type{ border-top:none; padding-top:0; }
+  .project-meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--muted);
+  }
+  .project-meta .p-date{ display:block; margin-top:6px; }
+  .project h3{
+    font-size:19px;
+    margin-bottom:10px;
+    transition:color 0.25s ease;
+  }
+  .project:hover h3{ color:var(--accent); }
+  .project p{
+    color:var(--muted);
+    font-size:15px;
+    max-width:560px;
+    margin-bottom:14px;
+  }
+  .project-tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .project-tags span{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    color:var(--accent);
+    background:var(--accent-dim);
+    padding:4px 10px;
+    border-radius:4px;
+  }
+
+  /* EXTRACURRICULAR */
+  .extra-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  .extra-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:24px;
+  }
+  .extra-card h3{ font-size:17px; margin-bottom:10px; }
+  .extra-card p{ color:var(--muted); font-size:14px; }
+
+  /* CONTACT */
+  .contact{ text-align:left; }
+  .contact h2{ font-size:32px; margin-bottom:20px; max-width:520px; }
+  .contact-email{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:22px;
+    color:var(--accent);
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:6px;
+    transition:border-color 0.25s ease;
+  }
+  .contact-email:hover{ border-color:var(--accent); }
+  .contact-links{
+    display:flex;
+    gap:24px;
+    margin-top:28px;
+  }
+  .contact-links a{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    color:var(--muted);
+  }
+  .contact-links a:hover{ color:var(--accent); }
+
+  footer{
+    padding:32px 0 40px;
+    border-top:1px solid var(--line);
+  }
+  footer p{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--muted);
+  }
+
+  /* reveal */
+  .reveal{
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible{ opacity:1; transform:translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    .signal path{ animation:none; stroke-dasharray:none; opacity:0.55; }
+  }
+
+  @media (max-width:680px){
+    .hero h1{ font-size:32px; }
+    .project{ grid-template-columns:1fr; gap:8px; }
+    .extra-grid{ grid-template-columns:1fr; }
+    .nav-links{ gap:18px; }
+  }
+
+  a:focus-visible, .tag:focus-visible, .btn:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-name">BK Hima Bindhu</span>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none; padding-bottom:0;">
+    <div class="hero-eyebrow"><span class="dot"></span>NITK · Information Technology</div>
+    <h1>Software developer with a research interest in <span class="hl">quantum security.</span></h1>
+    <p>I write production code and I study cryptographic protocols — two sides of the same question: how do you build systems that hold up under scrutiny.</p>
+
+    <div class="signal">
+      <svg viewBox="0 0 680 40" preserveAspectRatio="none">
+        <path d="M0,20 L60,20 L80,6 L100,34 L120,20 L160,20 C180,20 180,8 200,8 C220,8 220,32 240,32 L300,32 L320,20 L360,20 L380,4 L400,36 L420,20 L460,20 C480,20 480,10 500,10 C520,10 520,30 540,30 L680,20" />
+      </svg>
+    </div>
+
+    <div class="hero-links">
+      <a class="btn btn-primary" href="#work">See the work</a>
+      <a class="btn btn-ghost" href="mailto:bkhimabindhu6527@gmail.com">Get in touch</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="sec-head">
+      <h2>About</h2>
+      <span class="sec-note">01</span>
+    </div>
+    <div class="about-text reveal">
+      <p>I'm a B.Tech Information Technology student at <span class="em">NITK Surathkal</span>. Most of my time splits between building software — full-stack apps, ML pipelines — and undergraduate research into quantum-based encryption, where I get to work with randomness, entropy, and protocols that are still being figured out.</p>
+      <p>Outside of that, I run events for NITK's Amateur Astronomy Club and I'm a member of ISTE. I like problems that don't have an obvious shape yet.</p>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="sec-head">
+      <h2>Tools &amp; areas</h2>
+      <span class="sec-note">02</span>
+    </div>
+    <div class="tag-cloud reveal">
+      <span class="tag">Python</span>
+      <span class="tag">C++</span>
+      <span class="tag">Qiskit</span>
+      <span class="tag">React.js</span>
+      <span class="tag">Node.js</span>
+      <span class="tag">MongoDB</span>
+      <span class="tag">REST APIs</span>
+      <span class="tag">PyTorch</span>
+      <span class="tag">Vision Transformers</span>
+      <span class="tag">Cryptography</span>
+      <span class="tag">Linux &amp; Shell</span>
+      <span class="tag">Git</span>
+      <span class="tag">Data Structures &amp; Algorithms</span>
+      <span class="tag">Operating Systems</span>
+      <span class="tag">DBMS</span>
+      <span class="tag">Machine Learning</span>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="work">
+    <div class="sec-head">
+      <h2>Work</h2>
+      <span class="sec-note">03</span>
+    </div>
+
+    <div class="project reveal">
+      <div class="project-meta">Research paper<span class="p-date">SPARC 2026</span></div>
+      <div>
+        <h3>Quantum Encryption Framework</h3>
+        <p>Designed a quantum-based encryption framework using quantum randomness and permutation-based mixing, achieving near-maximum entropy (7.99/8.0) with strong statistical randomness. Co-authored and presented at SPARC 2026 with faculty guidance.</p>
+        <div class="project-tags"><span>Qiskit</span><span>Quantum Randomness</span><span>Cryptography</span></div>
+      </div>
+    </div>
+
+    <div class="project reveal">
+  <div class="project-meta">Developer tool<span class="p-date">Jul 2026</span></div>
+  <div>
+    <h3>URL Shortener Service</h3>
+
+    <p>
+      Built a production-style URL shortening service using Flask and Redis with
+      Base62-encoded short links, automatic click tracking, TTL-based expiry,
+      and real-time analytics. Designed an accessible frontend with live URL
+      validation, one-click example URLs, progressive API response inspection,
+      clipboard integration, and auto-refreshing click statistics to improve
+      developer experience.
+    </p>
+
+    <div class="project-tags">
+      <span>Flask</span>
+      <span>Redis</span>
+      <span>REST API</span>
+      <span>Base62</span>
+      <span>JavaScript</span>
+      <span>HTML/CSS</span>
+    </div>
+
+    <p style="margin-top:16px;">
+      <a href="https://url-shortener-flask-redis.onrender.com"
+         target="_blank"
+         style="color:var(--accent); font-family:'JetBrains Mono', monospace; font-size:13px;">
+         Live Demo ↗
+      </a>
+    </p>
+
+  </div>
+</div>
+
+    <div class="project reveal">
+      <div class="project-meta">ML pipeline<span class="p-date">Feb – Apr 2026</span></div>
+      <div>
+        <h3>VINCENT</h3>
+        <p>A cyber threat detection pipeline that converts structured network data into image representations, using Vision Transformers integrated with CNNs for attention-based feature extraction. Currently extending it with knowledge distillation to handle imbalanced, rare-event data better.</p>
+        <div class="project-tags"><span>PyTorch</span><span>Vision Transformers</span><span>CNNs</span></div>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="project-meta">Internship project</div>
+      <div>
+        <h3>Credit Card Fraud Detection</h3>
+        <p>A fraud detection system combining Random Forest and Isolation Forest with SMOTE for class imbalance, served through a Flask API for real-time inference.</p>
+        <div class="project-tags"><span>Flask</span><span>Random Forest</span><span>Isolation Forest</span><span>SMOTE</span></div>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="project-meta">NLP</div>
+      <div>
+        <h3>Cross-domain ABSA</h3>
+        <p>Aspect-based sentiment analysis across domains using a T5-small generative transformer, exploring how well sentiment structure transfers when the underlying text domain shifts.</p>
+        <div class="project-tags"><span>T5-small</span><span>NLP</span><span>Transformers</span></div>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="project-meta">Internship<span class="p-date">Quinfosys · May – Jul 2025</span></div>
+      <div>
+        <h3>Quantum Cryptography Internship</h3>
+        <p>Simulated BB84 and E91 QKD protocols in Qiskit to study secure key generation, modeled quantum noise and adversarial eavesdropping scenarios, and ran comparative analysis on key rate, noise tolerance, and attack resilience.</p>
+        <div class="project-tags"><span>Qiskit</span><span>QKD</span><span>BB84 / E91</span></div>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="project-meta">Application<span class="p-date">Mar – Apr 2025</span></div>
+      <div>
+        <h3>StegoShield</h3>
+        <p>An image steganography tool for secure message embedding using LSB manipulation on RGB data, with Bloom Filter and Trie structures for efficient message validation and retrieval.</p>
+        <div class="project-tags"><span>Python</span><span>Bloom Filter</span><span>Trie</span><span>Tkinter</span></div>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="project-meta">Systems project<span class="p-date">Jan – Mar 2025</span></div>
+      <div>
+        <h3>Key Function Customization</h3>
+        <p>A persistent key remapping system built with shell scripting and udev rules at the OS level, customizing hardware input behavior for accessibility and workflow efficiency.</p>
+        <div class="project-tags"><span>Linux</span><span>Shell Scripting</span><span>udev</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXTRACURRICULAR -->
+  <section id="extra">
+    <div class="sec-head">
+      <h2>Beyond the code</h2>
+      <span class="sec-note">04</span>
+    </div>
+    <div class="extra-grid reveal">
+      <div class="extra-card">
+        <h3>Amateur Astronomy Club — Events Head</h3>
+        <p>Lead planning and execution of stargazing and astrophotography sessions, handling end-to-end coordination and outreach for the club.</p>
+      </div>
+      <div class="extra-card">
+        <h3>ISTE — Member</h3>
+        <p>Help organize technical workshops and bootcamps, supporting collaborative learning initiatives through event coordination.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="sec-head" style="margin-bottom:24px;">
+      <h2>Contact</h2>
+      <span class="sec-note">05</span>
+    </div>
+    <p style="color:var(--muted); max-width:480px; margin-bottom:28px;">Happy to talk quantum computing, security, astronomy, or anything I'm building.</p>
+    <a class="contact-email" href="mailto:bkhimabindhu6527@gmail.com">
+      bkhimabindhu6527@gmail.com →
+    </a>
+    <div class="contact-links">
+      <a href="#" target="_blank">LinkedIn</a>
+      <a href="#" target="_blank">GitHub</a>
+      <a href="#" target="_blank">Resume</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 BK Hima Bindhu</p>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
