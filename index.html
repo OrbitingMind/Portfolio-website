@@ -9,14 +9,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg-grad: radial-gradient(circle at top, #22143A 0%, #14111F 35%, #09090F 100%);
-    --surface: #17141F;
-    --surface-2: #1E1930;
-    --line: #2B2A33;
-    --text: #F5F4F8;
-    --muted: #9C99A8;
-    --accent: #9B5DE5;
-    --accent-dim: rgba(155,93,229,0.14);
+    --bg-grad: #0E1B14;
+    --surface: #16261C;
+    --surface-2: #1C2F22;
+    --line: #2E4433;
+    --text: #F5F3EC;
+    --muted: #9FB09E;
+    --accent: #D4AF37;
+    --accent-dim: rgba(212,175,55,0.16);
   }
 
   *{ margin:0; padding:0; box-sizing:border-box; }
@@ -269,6 +269,7 @@
     font-size:12.5px;
   }
   .project-link:hover{ text-decoration:underline; }
+  .project-links{ display:flex; gap:16px; flex-wrap:wrap; }
 
   /* EXTRACURRICULAR */
   .extra-grid{
@@ -371,8 +372,8 @@
   <!-- HERO -->
   <section class="hero" style="border-top:none; padding-bottom:0;">
     <div class="hero-eyebrow"><span class="dot"></span>NITK · Information Technology</div>
-    <h1>Software developer with a research interest in <span class="hl">quantum security.</span></h1>
-    <p>I write production code and I study cryptographic protocols — two sides of the same question: how do you build systems that hold up under scrutiny.</p>
+    <h1>Software developer building <span class="hl">agentic AI tools</span> and production systems.</h1>
+    <p>I build things end to end — evaluation agents on the Claude API, ML pipelines, full-stack backends — and run undergraduate research in quantum cryptography alongside it.</p>
 
     <div class="signal">
       <svg viewBox="0 0 680 40" preserveAspectRatio="none">
@@ -393,7 +394,7 @@
       <span class="sec-note">01</span>
     </div>
     <div class="about-text reveal">
-      <p>I'm a B.Tech Information Technology student at <span class="em">NITK Surathkal</span>. Most of my time splits between building software — full-stack apps, ML pipelines — and undergraduate research into quantum-based encryption, where I get to work with randomness, entropy, and protocols that are still being figured out.</p>
+      <p>I'm a B.Tech Information Technology student at <span class="em">NITK Surathkal</span>. Most of my time splits between building software — full-stack apps, ML pipelines, agentic AI tools — and undergraduate research into quantum-based encryption, where I get to work with randomness, entropy, and protocols that are still being figured out.</p>
       <p>Outside of that, I run events for NITK's Amateur Astronomy Club and I'm a member of ISTE. I like problems that don't have an obvious shape yet.</p>
     </div>
   </section>
@@ -406,6 +407,7 @@
     </div>
     <div class="tag-cloud reveal">
       <span class="tag">Python</span>
+      <span class="tag">Claude API</span>
       <span class="tag">C++</span>
       <span class="tag">Qiskit</span>
       <span class="tag">React.js</span>
@@ -432,6 +434,22 @@
     </div>
 
     <div class="work-grid">
+      <div class="project reveal">
+        <div class="project-meta">Agentic AI pipeline<span class="p-date">Jul 2026</span></div>
+        <h3>LLM Paper Eval &amp; Triage Agent</h3>
+        <p>Agentic evaluation pipeline that separates fact extraction from rubric-based scoring across two distinct Claude API calls, with batch-level redundancy detection and a full reasoning trace behind every score.</p>
+        <div class="project-tags"><span>Claude API</span><span>Streamlit</span><span>Python</span></div>
+        <a class="project-link" href="https://llm-triage-agent.streamlit.app/" target="_blank">Live demo →</a>
+      </div>
+
+      <div class="project reveal">
+        <div class="project-meta">AI agent tool<span class="p-date">Jul 2026</span></div>
+        <h3>GitHub Repo Writeup Agent</h3>
+        <p>CLI agent that extracts a repo's README, structure, and highest-signal commits to draft a grounded design-reasoning writeup, with an automated eval that flags hallucinated citations.</p>
+        <div class="project-tags"><span>Claude API</span><span>PyGithub</span><span>Python</span></div>
+        <a class="project-link" href="https://github.com/OrbitingMind/github-writeup-agent" target="_blank">GitHub →</a>
+      </div>
+
       <div class="project reveal">
         <div class="project-meta">Internship project</div>
         <h3>Credit Card Fraud Detection</h3>
